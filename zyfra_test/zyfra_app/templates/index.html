@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Управление складом руды</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        input { width: 100px; }
+    </style>
+</head>
+<body>
+    <h2>Самосвалы</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Бортовой номер</th>
+                <th>Модель</th>
+                <th>Макс. грузоподъёмность, т</th>
+                <th>Текущий вес, т</th>
+                <th>Перегруз, %</th>
+                <th>Координаты разгрузки (X Y)</th>
+            </tr>
+            {% for samosval in samosvals %}
+            <tr>
+                <td>{{ samosval.number }}</td>
+                <td>{{ samosval.model.name }}</td>
+                <td>{{ samosval.model.max_load_capacity }}</td>
+                <td>{{ samosval.current_load }}</td>
+                <td>{{ samosval.peregruz_percent|floatformat:2 }}</td>
+                <td><input type="text" name="coords_{{ samosval.id }}" placeholder="X Y"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Рассчитать</button>
+    </form>
+
+    <h2>Склад</h2>
+    <table>
+        <tr>
+            <th>Название склада</th>
+            <th>Объём до разгрузки, т</th>
+            <th>Объём после разгрузки, т</th>
+            <th>Качественные характеристики</th>
+        </tr>
+        <tr>
+            <td>{{ warehouse.name }}</td>
+            <td>900</td>
+            <td>{{ warehouse.current_quantity }}</td>
+            <td>{{ warehouse.ore }}</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+zyfra_test/db.sqlite3
+media/
+
+# Virtual environment
+../.venv/
+bin/
+lib/
+pyvenv.cfg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+zyfra_project/.env
+*.env
+
