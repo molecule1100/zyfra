@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ samosval.number }}</td>
                 <td>{{ samosval.model.name }}</td>
-                <td>{{ samosval.model.max_load_capacity }}</td>
+                <td>{{ samosval.model.max_capacity }}</td>
                 <td>{{ samosval.current_load }}</td>
                 <td>{{ samosval.peregruz_percent|floatformat:2 }}</td>
                 <td><input type="text" name="coords_{{ samosval.id }}" placeholder="X Y"></td>
@@ -45,9 +45,9 @@
         </tr>
         <tr>
             <td>{{ warehouse.name }}</td>
-            <td>900</td>
+            <td>{{ initial_quantity }}</td>
             <td>{{ warehouse.current_quantity }}</td>
-            <td>{{ warehouse.ore }}</td>
+            <td>{{ warehouse.ruda }}</td>
         </tr>
     </table>
 </body>
