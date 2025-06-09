@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from .models import Samosval, Warehouse
-
+from .reset import reset_and_initialize_data
 
 def index(request):
+    if request.method == 'GET':
+        reset_and_initialize_data()
+
     samosvals = Samosval.objects.all()
     warehouse = Warehouse.objects.first()
+
     initial_quantity = warehouse.current_quantity
 
     if request.method == 'POST':
@@ -23,6 +27,5 @@ def index(request):
         'warehouse': warehouse,
         'initial_quantity': initial_quantity,
     }
-
 
     return render(request, 'index.html', context)
